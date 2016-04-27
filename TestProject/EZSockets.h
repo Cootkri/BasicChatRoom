@@ -11,7 +11,8 @@ enum Packet {
 	Packet_ERROR,
 	Packet_PING,
 	Packet_String,
-	Packet_Int
+	Packet_Int,
+	Packet_DISCONNECT
 };
 
 void InitWSA();
@@ -32,7 +33,7 @@ public:
 	void SetPartner(SOCKADDR_IN part) { partner = part; }
 
 	bool Connect(std::string ip, int port);
-	void CloseConnection();
+	void CloseConnection();//Also sends disconnect packet
 	void Listen(std::string ip, int port);
 	SOCKET Accept();
 

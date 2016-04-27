@@ -30,6 +30,10 @@ EZSocket::~EZSocket(){
 }
 
 void EZSocket::CloseConnection(){
+	char data[sizeof(Packet) + sizeof(int)];
+	MergeInts(data, Packet_DISCONNECT, 1);
+	send(mySoc, data, sizeof(data), NULL);
+
 	closesocket(mySoc);
 	mySoc = 0;
 }
